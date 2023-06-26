@@ -8,10 +8,9 @@
         'max-width': cellWidth
       }"
     >
-      <template v-for="thisEvent in dateGetEvents(addDaysToDate(workingDate, addDays - 1))">
+      <template v-for="thisEvent in dateGetEvents(addDaysToDate(workingDate, addDays - 1))" :key="makeDT(addDaysToDate(workingDate, addDays - 1)).toISODate() + getEventIdString(thisEvent)">
         <calendar-event
           v-if="thisEvent.start.isAllDay || thisEvent.timeSpansMultipleDays"
-          :key="makeDT(addDaysToDate(workingDate, addDays - 1)).toISODate() + getEventIdString(thisEvent)"
           :event-object="thisEvent"
           :show-time="thisEvent.timeSpansMultipleDays"
           :event-ref="eventRef"

@@ -2,10 +2,10 @@
   <div class="calendar-day-column-label flex-col-auto">
     <template
       v-for="thisHour in 24"
+      :key="thisHour"
     >
       <div
         class="relative-position calendar-day-time"
-        :key="thisHour"
         :style="{ 'height': calcDayCellHeight, 'max-height': calcDayCellHeight }"
       >
         <div class="time-label">
@@ -14,7 +14,6 @@
       </div>
       <div
         v-if="showHalfHours"
-        :key="thisHour + 'half'"
         class="calendar-day-time cdcl-half-hour"
         :style="{ 'height': calcDayCellHeight, 'max-height': calcDayCellHeight }"
       >

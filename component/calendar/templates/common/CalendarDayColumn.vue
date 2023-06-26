@@ -3,9 +3,9 @@
     <!-- underlying cells -->
     <template
       v-for="thisHour in 24"
+      :key="thisHour"
     >
       <div
-        :key="thisHour"
         :style="getCellStyle"
         :id="getDayHourId(eventRef, workingDate, thisHour - 1)"
       >
@@ -14,7 +14,6 @@
       <div
         v-if="showHalfHours"
         :style="getCellStyle"
-        :key="thisHour + '-half'"
       >
         <div class="calendar-day-time-content-half"></div>
       </div>
@@ -22,10 +21,9 @@
 
     <!-- events -->
     <template v-if="dateEvents.length > 0">
-      <template v-for="eventObject in dateEvents">
+      <template :key="makeDT(workingDate).toISODate() + getEventIdString(eventObject)" v-for="eventObject in dateEvents">
         <div
           v-if="!eventObject.start.isAllDay && !eventObject.timeSpansMultipleDays"
-          :key="makeDT(workingDate).toISODate() + getEventIdString(eventObject)"
           :class="calculateDayEventClass(eventObject)"
           :style="calculateDayEventStyle(eventObject)"
         >
